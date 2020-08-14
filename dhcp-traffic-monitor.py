@@ -3,9 +3,6 @@ import sys
 import subprocess
 from decouple import config
 
-#os.environ['IP_NETWORK'] = '192.168.0.11'
-# os.environ['IP_DEVICE'] = '192.168.0.11'
-
 IP_NETWORK = config('IP_NETWORK')
 IP_DEVICE = config('IP_DEVICE')
 

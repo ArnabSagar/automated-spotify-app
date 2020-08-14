@@ -1,22 +1,36 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
+from decouple import config
+ 
+# webdriver setup and accessing website 
 
 driver = webdriver.Chrome()
 driver.get("https://open.spotify.com")
-
-log_in = driver.find_element_by_css_selector("#main > div > div.Root__top-container > div.Root__top-bar > header > div:nth-child(4) > button._2221af4e93029bedeab751d04fab4b8b-scss._1edf52628d509e6baded2387f6267588-scss")
+log_in = driver.find_element_by_xpath("//*[@id='main']/div/div[2]/div[1]/header/div[4]/button[2]")
 log_in.click()
-sleep(3)
-#**************************************
+sleep(5)
 
+
+# Login screen
+
+USERNAME = config('SPOTIFY_USERNAME')
+PASSWORD = config('SPOTIFY_PASSWORD')
 
 email_entry = driver.find_element_by_xpath("//*[@id='login-username']")
-email_entry.send_keys("chuckycheese99")
+email_entry.click()
+email_entry.send_keys(Keys.HOME)
+email_entry.send_keys(USERNAME)
+print("yes1")
 
-password_entry = driver.find_element_by_css_selector("#login-password")
+email_entry.send_keys(Keys.TAB)
+sleep(2)
 
+password_entry = driver.find_element_by_xpath("//*[@id='login-password']")
+password_entry.click()
+password_entry.send_keys(Keys.HOME)
+password_entry.send_keys(PASSWORD)
+print("yes2")
 
-#**************************************
 login_button = driver.find_element_by_xpath("/html/body/div[1]/div[2]/div/form/div[3]/div[2]/button")
 login_button.click()
