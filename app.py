@@ -2,6 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 from decouple import config
+
+
+USERNAME = config('SPOTIFY_USERNAME')
+PASSWORD = config('SPOTIFY_PASSWORD')
  
 # webdriver setup and accessing website 
 
@@ -11,14 +15,9 @@ log_in = driver.find_element_by_xpath("//*[@id='main']/div/div[2]/div[1]/header/
 log_in.click()
 sleep(5)
 
-
 # Login screen
 
-USERNAME = config('SPOTIFY_USERNAME')
-PASSWORD = config('SPOTIFY_PASSWORD')
-
-email_entry = driver.find_element_by_xpath("//*[@id='login-username']")
-email_entry.click()
+email_entry = driver.find_element_by_xpath("//*[@id='login-username']").click()
 email_entry.send_keys(Keys.HOME)
 email_entry.send_keys(USERNAME)
 print("yes1")
@@ -26,8 +25,7 @@ print("yes1")
 email_entry.send_keys(Keys.TAB)
 sleep(2)
 
-password_entry = driver.find_element_by_xpath("//*[@id='login-password']")
-password_entry.click()
+password_entry = driver.find_element_by_xpath("//*[@id='login-password']").click()
 password_entry.send_keys(Keys.HOME)
 password_entry.send_keys(PASSWORD)
 print("yes2")
