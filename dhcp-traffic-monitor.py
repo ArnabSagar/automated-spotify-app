@@ -1,14 +1,11 @@
-import os
-import sys
 import subprocess
 from decouple import config
 from time import  sleep
-#import app
 
 IP_NETWORK = config('IP_NETWORK')
 IP_DEVICE = config('IP_DEVICE')
 
-
+#To sniff the DHCP traffic for the device to reconnect
 proc = subprocess.Popen(['ping', IP_NETWORK], stdout=subprocess.PIPE)
 
 while True:
@@ -32,50 +29,9 @@ while True:
         
 
 if(flag == 0):
-    print("Arnab\'s home")
-    
-    subprocess.call(["python3", "app.py"])
-    #app.spotifyBot()
 
+    print("Arnab\'s home")
+    subprocess.call(["python3", "app.py"])
+    
 else:
     print('Arnab\'s not home')
-
-#To sniff the DHCP traffic for the device to reconnect
-
-
-"""
-
-#use - sudo arp-scan -l -r 3 | grep 192.168.0.11(The IP network of the device) 'grep', IP_NETWORK
-command = 'sudo arp-scan -l -r 3 | grep 192.168.0.11'
-
-
-proc = subprocess.Popen(['sudo','arp-scan', '-l', '-r 3',], stdout=subprocess.PIPE)
-
-
-
-
-while True:
-
-    line = proc.stdout.readline()
-    ip_save = []
-
-    for ch in line:
-        
-        if(ch == '\t'):
-            break
-        else:
-            ip_save.append(str(ch))
-
-    
-    #print(ip_save)
-
-    print(line)
-    
-    
-    connected_ip = line.decode('utf-8').split()[0]
-    
-    
-    if not line:
-        break
-
-        """
